@@ -14,7 +14,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
-    price: Int
+    price: Float
   }
 
   type Auth {
@@ -35,7 +35,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addDrink(
       name: String!, 
-      price: Int!,
+      price: Float!,
       description: String,
       image: String
     ): Drink
