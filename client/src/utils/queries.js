@@ -52,4 +52,17 @@ export const QUERY_DRINK = gql`
             price
         }
     }
+`;
+
+export const QUERY_CART = gql`
+    query cart($id: ID!) {
+        cart(id: $id) {
+            cart {
+                _id
+                name
+                description
+                price
+            }
+        }
+    }
 `
