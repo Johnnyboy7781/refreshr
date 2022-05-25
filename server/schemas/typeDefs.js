@@ -14,7 +14,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
-    price: Number
+    price: Int
   }
 
   type Auth {
