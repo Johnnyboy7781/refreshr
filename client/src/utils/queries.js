@@ -32,10 +32,24 @@ export const QUERY_USER = gql`
     }
 `;
 
-export const QUERY_CART = gql`
-    query cart($id: ID!) {
-        cart(id: $id) {
+export const QUERY_DRINKS = gql`
+    query drinks {
+        drinks {
+            _id
+            name
+            description
+            price
+        }
+    }
+`;
 
+export const QUERY_DRINK = gql`
+    query drink($name: String!) {
+        drink(name: $name) {
+            _id
+            name
+            description
+            price
         }
     }
 `
