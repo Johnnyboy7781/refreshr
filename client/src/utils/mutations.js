@@ -23,3 +23,29 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_DRINK = gql`
+  mutation addDrink($name: String!, $price: String!, $description: String!, $image: String!) {
+    addDrink(name: $name, price: $price, description: $description, image: $image) {
+      drink {
+        name
+        price
+        description
+        image
+      }
+    }
+  }
+`;
+
+export const REMOVE_DRINK = gql`
+  mutation removeDrink($drinkId: ID!) {
+    removeDrink(_id: $drinkId) {
+      drink {
+        name
+        price
+        description
+        image
+      }
+    }
+  }
+`
