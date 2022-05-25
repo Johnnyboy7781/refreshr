@@ -10,6 +10,9 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('cart').populate("favorites");
     },
+    cart: async (parent, { id }) => {
+      return await User.findOne({ id }).populate('cart').select('cart');
+    }
   },
 
   Mutation: {
