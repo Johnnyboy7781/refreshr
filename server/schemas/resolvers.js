@@ -78,7 +78,8 @@ const resolvers = {
         { _id: userId },
         { $pull: { cart: drinkId }},
         { new: true }
-      )
+      );
+      return user;
     }
   }
 };
