@@ -10,6 +10,12 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('cart').populate("favorites");
     },
+    drinks: async () => {
+      return Drink.find();
+    },
+    drink: async (parent, { name }) => {
+      return Drink.findOne({ name });
+    }
   },
 
   Mutation: {
@@ -35,6 +41,45 @@ const resolvers = {
 
       return { token, user };
     },
+    addDrink: async (parent, { name, price, description, image }) => {
+      const drink = await Drink.create({ name, price, description, image });
+      return drink;
+    },
+    removeDrink: async (parent, { drinkId }) => {
+      const drink = await Drink.findOneAndDelete({ _id: drinkId });
+      return drink;
+    },
+    addFavorite: async (parent, { userId, drinkId }) => {
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $addToSet: { favorites: drinkId }},
+        { new: true }
+      );
+      return user;
+    },
+    removeFavorite: async (parent, { userId, drinkId }) => {
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { favorites: drinkId}},
+        { new: true }
+      );
+      return user;
+    },
+    addToCart: async (parent, { userId, drinkId }) => {
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $addToSet: { cart: drinkId }},
+        { new: true }
+      );
+      return user;
+    },
+    removeFromCart: async (parent, { userId, drinkId }) => {
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { cart: drinkId }},
+        { new: true }
+      )
+    }
   }
 };
 
