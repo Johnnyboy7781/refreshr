@@ -15,6 +15,9 @@ const resolvers = {
     },
     drink: async (parent, { name }) => {
       return Drink.findOne({ name });
+    },
+    cart: async (parent, { id }) => {
+      return await User.findOne({ id }).populate('cart').select('cart');
     }
   },
 

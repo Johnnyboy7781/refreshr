@@ -14,7 +14,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
-    price: Number
+    price: Int
   }
 
   type Auth {
@@ -27,6 +27,7 @@ const typeDefs = gql`
     user(username: String!): User
     drinks: [Drink]
     drink(name: String!): Drink
+    cart(id: ID!): User
   }
 
   type Mutation {
