@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./Navbar.css";
+import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
+import { Link } from "react-router-dom"
+
 
 function Navbar() {
   const [active, setActive] = useState("navMenu");
@@ -27,7 +30,7 @@ function Navbar() {
         </li>
         <li className="navItem">
           <a href="#" className="navLink">
-            Register
+            <Link to="/signup">Register</Link>
           </a>
         </li>
         <li className="navItem">
