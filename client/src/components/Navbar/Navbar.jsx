@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import { Link } from "react-router-dom"
 
 
-function Navbar() {
+function Navbar () {
   const [active, setActive] = useState("navMenu");
   const [icon, setIcon] = useState("navToggler");
   const navToggle = () => {
