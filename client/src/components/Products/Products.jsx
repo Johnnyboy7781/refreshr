@@ -1,13 +1,24 @@
 import React from "react";
-import { testProducts } from "./Test";
 import "./Products.css";
 import Product from "../Product/Product"
 
+import { useQuery } from "@apollo/client";
+import { QUERY_DRINKS } from "../../utils/queries";
+
 const Products = () => {
+    const {loading, data} = useQuery(QUERY_DRINKS);
+    
+    const drinks = data?.drinks || {};
+
+    console.log(drinks);
+
+    if(loading) {
+        return <div>Loading...</div>;
+    }
     return (
         <div className="Container">
-            {testProducts.map((item) => (
-              <Product item={item} key={item.id} />  
+            {drinks.map((drink) => (
+              <Product drink={drink} key={drink._id} />  
             ))}
         </div>
     )

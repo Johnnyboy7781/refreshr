@@ -39,6 +39,7 @@ export const QUERY_DRINKS = gql`
             name
             description
             price
+            image
         }
     }
 `;
