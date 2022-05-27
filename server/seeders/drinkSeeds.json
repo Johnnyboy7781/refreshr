@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Energy Monstrosity",
+        "price": 4.99,
+        "description": "This drink is so powerful that you may experience hair loss",
+        "image": "drink1"
+    },
+    {
+        "name": "Black Horse",
+        "price": 4.49,
+        "description": "Black Horse gives you a weird and unsettling feeling in the pit of your stomach",
+        "image": "drink2"
+    }
+]

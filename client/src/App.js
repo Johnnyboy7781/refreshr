@@ -12,6 +12,7 @@ import Footer from "./components/Footer/Footer";
 
 import Home from "./Pages/Home";
 import Signup from './Pages/Signup';
+import SingleDrink from "./Pages/SingleDrink";
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,6 +46,10 @@ function App() {
                 path="/signup" 
                 element={<Signup />} 
               /> 
+              <Route
+                path="/drink/:drinkId"
+                element={<SingleDrink />}
+              />
             </Routes>
       </Router>
     </ApolloProvider>
