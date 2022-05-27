@@ -44,12 +44,13 @@ export const QUERY_DRINKS = gql`
 `;
 
 export const QUERY_DRINK = gql`
-    query drink($name: String!) {
-        drink(name: $name) {
+    query drink($id: ID!) {
+        drink(id: $id) {
             _id
             name
             description
             price
+            image
         }
     }
 `;

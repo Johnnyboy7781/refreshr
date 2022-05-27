@@ -13,8 +13,8 @@ const resolvers = {
     drinks: async () => {
       return Drink.find();
     },
-    drink: async (parent, { name }) => {
-      return Drink.findOne({ name });
+    drink: async (parent, { id }) => {
+      return Drink.findOne({ _id: id });
     },
     cart: async (parent, { id }) => {
       return await User.findOne({ id }).populate('cart');
