@@ -7,8 +7,14 @@ const resolvers = {
     users: async () => {
       return User.find().populate('cart').populate("favorites");
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('cart').populate("favorites");
+    user: async (parent, args, context) => {
+      if(context.user) {
+        const user = await User.findById(context.user._id).populate("cart").populate("favorites");
+        user.cart.sort((a, b) => a.name.localeCompare(b.name));
+        return user;
+      }
+      
+      throw new AuthenticationError("Not logged in!");
     },
     drinks: async () => {
       return Drink.find();
