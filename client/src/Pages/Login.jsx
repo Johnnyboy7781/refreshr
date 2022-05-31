@@ -1,15 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar/Navbar";
-
+import { Link } from "react-router-dom"
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
+  background:
     url("https://img.freepik.com/free-photo/aluminum-cans-soda-background_128406-587.jpg?w=1380")
       center;
   background-size: cover;
@@ -57,7 +54,7 @@ const Button = styled.button`
   }
 `;
 
-const Link = styled.a`
+const Text = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
@@ -91,8 +88,8 @@ const Login = () => {
           <Button onClick={handleClick}>
             LOGIN
           </Button>
-          <Link>FORGOT YOUR PASSWORD? (SOUNDS LIKE YOU NEED MORE ENERGY)</Link>
-          <Link>CREATE A NEW ACCOUNT (AND GET WITH THE PROGRAM)</Link>
+          <Text>FORGOT YOUR PASSWORD? (SOUNDS LIKE YOU NEED MORE ENERGY)</Text>
+          <Link to="/register"><Text>CREATE A NEW ACCOUNT (AND GET WITH THE PROGRAM)</Text></Link>
         </Form>
       </Wrapper>
     </Container>

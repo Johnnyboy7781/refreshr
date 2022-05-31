@@ -18,24 +18,16 @@ function Navbar () {
   };
   return (
     <nav className="nav">
-      <a href="#" className="navBrand">
-        <Link to="/">RefreshR</Link>
-      </a>
+        <Link to="/"><h2 className="navBrand">RefreshR</h2></Link>
       <ul className={active}>
         <li className="navItem">
-          <a href="#" className="navLink">
-            Log In
-          </a>
+            <Link to="/login"><h4 className="navLink">Log in</h4></Link>
         </li>
         <li className="navItem">
-          <a href="#" className="navLink">
-            <Link to="/register">Register</Link>
-          </a>
+            <Link to="/register"><h4 className="navLink">Register</h4></Link>
         </li>
         <li className="navItem">
-          <a href="#" className="navLink">
-            Cart
-          </a>
+            <Link to="cart"><h4 className="navLink">Cart</h4></Link>
         </li>
       </ul>
       <div onClick={navToggle} className={icon}>
