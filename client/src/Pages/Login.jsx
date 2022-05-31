@@ -1,7 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar/Navbar";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const Container = styled.div`
   width: 100vw;
@@ -66,11 +69,22 @@ const Text = styled.a`
 `;
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [login, { error }] = useMutation(LOGIN_USER);
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: { email: email, password: password }
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    }
+    catch (e) {
+      console.log(e);
+    }
   };
   return (
     <>
@@ -80,15 +94,15 @@ const Login = () => {
         <Title>SIGN IN</Title>
         <Form>
           <Input
-            placeholder="USERNAME"
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="EMAIL"
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             placeholder="PASSWORD"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick} disabled>
+          <Button onClick={handleClick}>
             LOGIN
           </Button>
           <Text>FORGOT YOUR PASSWORD? (SOUNDS LIKE YOU NEED MORE ENERGY)</Text>

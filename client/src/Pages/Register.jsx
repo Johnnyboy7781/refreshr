@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar/Navbar";
+import React from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import { useState } from "react";
+import Auth from "../utils/auth";
 
 const Container = styled.div`
   width: 100vw;
@@ -55,19 +61,48 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [formState, setFormState] = useState({ username: "", email: "", password: ""});
+  const [match, setMatch] = useState(false);
+  const [addUser] = useMutation(ADD_USER);
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const mutationResponse = await addUser({
+      variables: {
+        username: formState.username,
+        email: formState.email,
+        password: formState.password,
+      }
+    });
+    console.log(mutationResponse);
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormState({
+      ...formState,
+      [name]: value
+    });
+  };
+
+  const checkDupe = (e) => {
+    const { value } = e.target;
+    setMatch(value === formState.password);
+  }
+
   return (
     <>
     <Navbar />
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="NAME" />
-          <Input placeholder="LAST NAME" />
-          <Input placeholder="USERNAME" />
-          <Input placeholder="EMAIL" />
-          <Input placeholder="PASSWORD" />
-          <Input placeholder="CONFIRM PASSWORD" />
+        <Form onSubmit={handleFormSubmit} >
+          <Input placeholder="USERNAME" name="username" onChange={handleChange} />
+          <Input placeholder="EMAIL" name="email" onChange={handleChange} />
+          <Input placeholder="PASSWORD" name="password" onChange={handleChange} />
+          <Input placeholder="CONFIRM PASSWORD" onChange={checkDupe} />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>

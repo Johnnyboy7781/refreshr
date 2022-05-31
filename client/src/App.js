@@ -52,7 +52,7 @@ function App() {
                 element={<SingleDrink />}
               />
               <Route 
-                path="/checkout"
+                path="/cart"
                 element={<Checkout />}
               />
               <Route

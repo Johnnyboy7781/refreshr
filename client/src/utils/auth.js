@@ -33,7 +33,7 @@ class AuthService {
 
     // Save token, reload page
     login(idToken) {
-        localStorage.setItem("refreshr_token");
+        localStorage.setItem("refreshr_token", idToken);
         window.location.assign('/');
     }
 
