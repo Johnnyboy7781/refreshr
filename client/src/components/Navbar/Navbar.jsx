@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom"
+import Logo  from "../../assets/logo48px.png"
 
 
 function Navbar () {
@@ -19,6 +20,7 @@ function Navbar () {
   return (
     <nav className="nav">
         <Link to="/"><h2 className="strokeText">RefreshR</h2></Link>
+        <img src={Logo} className="navLogo" alt="Refrehr Logo"/>
       <ul className={active}>
         <li className="navItem">
             <Link to="/login"><h4 className="navLink">Log in</h4></Link>
