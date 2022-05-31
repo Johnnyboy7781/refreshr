@@ -8,19 +8,13 @@ import { QUERY_DRINK } from "../utils/queries";
 const SingleDrink = () => {
     const { drinkId } = useParams();
 
-    const { loading, data, error } = useQuery(QUERY_DRINK, {
+    const { loading, data } = useQuery(QUERY_DRINK, {
         variables: {
             id: drinkId
         }
     });
 
-    console.log(loading);
-    console.log(data);
-    console.log(error);
-
     const drink = data?.drink || {};
-
-    console.log(drink);
 
     if(loading) {
         return <div>Loading...</div>;
