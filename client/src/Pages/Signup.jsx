@@ -1,79 +1,81 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client"
-import { ADD_USER } from "../utils/mutations"
+import styled from "styled-components";
+import Navbar from "../components/Navbar/Navbar";
 
-import Auth from "../utils/auth"
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background:
+    url("https://i.imgur.com/4bjq6l7.png")
+      center;
+  background-size: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
+const Wrapper = styled.div`
+  width: 40%;
+  padding: 20px;
+  background-color: white;
+  opacity: 80%;
+`;
 
-const Signup = () => {
-    const [formState, setFormState] = useState({
-        username: '',
-        email: '',
-        password: '',
-    });
-    
-    const [addUser, { error }] = useMutation(ADD_USER);
+const Title = styled.h1`
+  font-size: 24px;
+  font-weight: 300;
+`;
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        try {
-            const { data } = await addUser({
-                variables: { ...formState },
-            });
-            Auth.login(data.addUser.token);
-        } catch (e) {
-            console.error(e);
-        }
-    };
-    
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
-    };
+const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
-    return (
-        <main>
-            <div>
-                <h2>Sign Up</h2>
-                <form onSubmit={handleFormSubmit}>
-                    <input
-                        className="form-input"
-                        placeholder="Your username"
-                        name="username"
-                        type="username"
-                        id="username"
-                        value={formState.username}
-                        onChange={handleChange}
-                    />
-                    <input
-                        className="form-input"
-                        placeholder="Your email"
-                        name="email"
-                        type="email"
-                        id="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                    />
-                    <input
-                        className="form-input"
-                        placeholder="******"
-                        name="password"
-                        type="password"
-                        id="password"
-                        value={formState.password}
-                        onChange={handleChange}
-                    />
-                    <button type="submit">
-                        Submit
-                    </button>
-                </form>
-                {error && <div>Signup failed</div>}
-            </div>
-        </main>
-    );
+const Input = styled.input`
+  flex: 1;
+  min-width: 40%;
+  margin: 20px 10px 0px 0px;
+  padding: 10px;
+  font-weight: bold
+`;
+
+const Agreement = styled.span`
+  font-size: 12px;
+  margin: 20px 0px;
+`;
+
+const Button = styled.button`
+  width: 40%;
+  border: none;
+  padding: 15px 20px;
+  background-color: teal;
+  color: white;
+  cursor: pointer;
+`;
+
+const Register = () => {
+  return (
+    <>
+    <Navbar />
+    <Container>
+      <Wrapper>
+        <Title>CREATE AN ACCOUNT</Title>
+        <Form>
+          <Input placeholder="name" />
+          <Input placeholder="last name" />
+          <Input placeholder="username" />
+          <Input placeholder="email" />
+          <Input placeholder="password" />
+          <Input placeholder="confirm password" />
+          <Agreement>
+            By creating an account, I consent to the processing of my personal
+            data in accordance with the <b>PRIVACY POLICY</b>
+          </Agreement>
+          <Button>CREATE</Button>
+        </Form>
+      </Wrapper>
+    </Container>
+    </>
+  );
 };
 
-export default Signup;
+export default Register;
