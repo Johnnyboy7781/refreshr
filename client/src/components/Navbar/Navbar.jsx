@@ -24,7 +24,7 @@ function Navbar () {
       <ul className={active}>
         <li className="navItem">
           <a href="#" className="navLink">
-            Log In
+            <Link to="/login">Log in</Link>
           </a>
         </li>
         <li className="navItem">
