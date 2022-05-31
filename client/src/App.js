@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import Footer from "./components/Footer/Footer";
 
 import Home from "./Pages/Home";
-import Signup from './Pages/Signup';
+import Register from './Pages/Register';
 import SingleDrink from "./Pages/SingleDrink";
 import Checkout from "./Pages/Checkout";
 
@@ -44,8 +44,8 @@ function App() {
                 element={<Home />} 
               />
               <Route 
-                path="/signup" 
-                element={<Signup />} 
+                path="/register" 
+                element={<Register />} 
               /> 
               <Route
                 path="/drink/:drinkId"

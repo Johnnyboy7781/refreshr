@@ -19,7 +19,7 @@ function Navbar () {
   return (
     <nav className="nav">
       <a href="#" className="navBrand">
-        RefreshR
+        <Link to="/">RefreshR</Link>
       </a>
       <ul className={active}>
         <li className="navItem">
@@ -29,7 +29,7 @@ function Navbar () {
         </li>
         <li className="navItem">
           <a href="#" className="navLink">
-            <Link to="/signup">Register</Link>
+            <Link to="/register">Register</Link>
           </a>
         </li>
         <li className="navItem">
