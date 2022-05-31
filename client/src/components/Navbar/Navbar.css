@@ -34,7 +34,6 @@ a {
     transform: scaleX(-1)
 }
 
-
 .navMenu {
   display: flex;
   align-items: center;
@@ -89,8 +88,4 @@ a {
     color: white;
     text-transform: uppercase;
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;   
-}
-.navLogo {
-    max-width: 100%;
-    height: auto;
 }
