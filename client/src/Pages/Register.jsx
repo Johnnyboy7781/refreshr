@@ -5,9 +5,9 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background:
-    url("https://i.imgur.com/4bjq6l7.png")
+    url("https://img.freepik.com/free-photo/aluminum-cans-soda-background_128406-587.jpg?w=1380")
       center;
-  background-size: contain;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
   background-color: white;
-  opacity: 80%;
+  opacity: 90%;
 `;
 
 const Title = styled.h1`
@@ -60,12 +60,12 @@ const Register = () => {
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
         <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+          <Input placeholder="NAME" />
+          <Input placeholder="LAST NAME" />
+          <Input placeholder="USERNAME" />
+          <Input placeholder="EMAIL" />
+          <Input placeholder="PASSWORD" />
+          <Input placeholder="CONFIRM PASSWORD" />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
