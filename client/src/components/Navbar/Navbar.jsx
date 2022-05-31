@@ -29,7 +29,7 @@ function Navbar () {
             <Link to="/register"><h4 className="navLink">Register</h4></Link>
         </li>
         <li className="navItem">
-            <Link to="cart"><h4 className="navLink">Cart</h4></Link>
+            <Link to="/cart"><h4 className="navLink">Cart</h4></Link>
         </li>
       </ul>
       <div onClick={navToggle} className={icon}>
