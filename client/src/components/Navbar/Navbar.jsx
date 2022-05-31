@@ -18,7 +18,7 @@ function Navbar () {
   };
   return (
     <nav className="nav">
-        <Link to="/"><h2 className="navBrand">RefreshR</h2></Link>
+        <Link to="/"><h2 className="strokeText">RefreshR</h2></Link>
       <ul className={active}>
         <li className="navItem">
             <Link to="/login"><h4 className="navLink">Log in</h4></Link>

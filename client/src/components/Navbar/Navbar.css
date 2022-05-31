@@ -23,7 +23,8 @@ a {
   align-items: center;
   justify-content: space-around;
   height: 10vh;
-  background: rgb(0, 0, 0);
+  background: teal;
+  border-style: solid none;
 }
 .navBrand {
   text-transform: uppercase;
@@ -78,4 +79,9 @@ a {
 }
 .toggle .line3 {
   transform: rotate(45deg) translate(-4px, -5px);
+}
+.strokeText {
+    color: white;
+    text-transform: uppercase;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
