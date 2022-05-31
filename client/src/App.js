@@ -8,9 +8,9 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
+import Footer from "./components/Footer/Footer";
 
-import './App.css';
-import Home from "./Pages/Home"
+import Home from "./Pages/Home";
 import Signup from './Pages/Signup';
 import SingleDrink from "./Pages/SingleDrink";
 import Checkout from "./Pages/Checkout";
