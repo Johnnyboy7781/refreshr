@@ -20,6 +20,8 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   opacity: 90%;
+  border: solid 5px teal;
+  border-radius: 5px;
 `;
 
 const Title = styled.h1`
@@ -38,6 +40,7 @@ const Input = styled.input`
   min-width: 40%;
   margin: 10px 0;
   padding: 10px;
+  font-weight: bold
 `;
 
 const Button = styled.button`
@@ -49,7 +52,7 @@ const Button = styled.button`
   cursor: pointer;
   margin-bottom: 10px;
   &:disabled {
-    color: green;
+    color: #ffffff;
     cursor: not-allowed;
   }
 `;
@@ -85,7 +88,7 @@ const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} disabled>
             LOGIN
           </Button>
           <Text>FORGOT YOUR PASSWORD? (SOUNDS LIKE YOU NEED MORE ENERGY)</Text>
