@@ -18,6 +18,8 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   opacity: 90%;
+  border: solid 5px teal;
+  border-radius: 5px;
 `;
 
 const Title = styled.h1`
