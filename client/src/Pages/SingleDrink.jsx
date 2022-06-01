@@ -98,6 +98,7 @@ const SingleDrink = () => {
   const { drinkId } = useParams();
   const [addToCart] = useMutation(ADD_TO_CART);
   const [addToFav] = useMutation(ADD_FAVORITE);
+  const [addToCartBulk] = useMutation(ADD_TO_CART_BULK);
 
   const { loading, data } = useQuery(QUERY_DRINK, {
     variables: {
@@ -126,9 +127,15 @@ const SingleDrink = () => {
 
     try {
       if (type === "cart") {
-        addToCart({
-          variables: { userId: data._id, drinkId: drink._id }
-        })
+        if (quantity === 1) {
+          addToCart({
+            variables: { userId: data._id, drinkId: drink._id }
+          })
+        } else {
+          addToCartBulk({
+            variables: { userId: data._id, drinkId: drink._id, amount: quantity }
+          })
+        }
       } else {
         addToFav({
           variables: { userId: data._id, drinkId: drink._id }
