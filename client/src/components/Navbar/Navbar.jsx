@@ -25,7 +25,7 @@ function Navbar () {
           <img src={Logo} className="navLogo" alt="Refrehr Logo"/>
         <ul className={active}>
           <li className="navItem">
-              <Link to="cart"><h4 className="navLink">Cart</h4></Link>
+              <Link to="/cart"><h4 className="navLink">Cart</h4></Link>
           </li>
           <li className="navItem">
             <a href="/" onClick={() => Auth.logout()}>
