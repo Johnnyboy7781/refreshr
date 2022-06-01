@@ -1,19 +1,21 @@
 import { React, useState } from "react";
 import styled from "styled-components";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Navbar from "../components/Navbar/Navbar";
 
 import { useParams } from "react-router-dom";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
 import { QUERY_DRINK } from "../utils/queries";
+import { ADD_FAVORITE, ADD_TO_CART } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const Container = styled.div`
-  background:
-    url("https://img.freepik.com/free-photo/aluminum-cans-soda-background_128406-587.jpg?w=1380")
-      center;
-  background-size: cover;`;
+  background: url("https://img.freepik.com/free-photo/aluminum-cans-soda-background_128406-587.jpg?w=1380")
+    center;
+  background-size: cover;
+`;
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -85,6 +87,7 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
+  margin: 0 10px;
 
   &:hover {
     background-color: #f8f4f4;
@@ -92,35 +95,56 @@ const Button = styled.button`
 `;
 
 const SingleDrink = () => {
-    const { drinkId } = useParams();
+  const { drinkId } = useParams();
+  const [addToCart] = useMutation(ADD_TO_CART);
+  const [addToFav] = useMutation(ADD_FAVORITE);
 
-    const { loading, data } = useQuery(QUERY_DRINK, {
-        variables: {
-            id: drinkId
-        }
-    });
+  const { loading, data } = useQuery(QUERY_DRINK, {
+    variables: {
+      id: drinkId,
+    },
+  });
 
-    const drink = data?.drink || {};
-    
-    const [quantity, setQuantity] = useState(1);
+  const drink = data?.drink || {};
 
-    const handleQuantity = (type) => {
-        if (type === "dec") {
-          quantity > 1 && setQuantity(quantity - 1);
-        } else {
-          setQuantity(quantity + 1);
-        }
-      };
-    const handleClick = () => {
+  const [quantity, setQuantity] = useState(1);
 
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleFormSubmit = type => {
+    if (!Auth.loggedIn()) {
+      alert(`You must be logged in to add to ${type}!`);
     }
 
-    if(loading) {
-        return <div>Loading...</div>;
+    const { data } = Auth.getProfile();
+
+    try {
+      if (type === "cart") {
+        addToCart({
+          variables: { userId: data._id, drinkId: drink._id }
+        })
+      } else {
+        addToFav({
+          variables: { userId: data._id, drinkId: drink._id }
+        })
+      }
+    } catch (err) {
+      console.log(err);
     }
-    return (
-        <Container>
-            <Navbar />
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <Container>
+      <Navbar />
       <Wrapper>
         <ImgContainer>
           <Image src={require(`../assets/${drink.image}.png`)} alt="A drink" />
@@ -133,9 +157,10 @@ const SingleDrink = () => {
             <AmountContainer>
               <RemoveIcon onClick={() => handleQuantity("dec")} />
               <Amount>{quantity}</Amount>
-              <AddIcon onClick={() => handleQuantity("inc")}/>
+              <AddIcon onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button onClick={handleClick}>ADD TO CART</Button>
+            <Button onClick={() => handleFormSubmit("cart")}>ADD TO CART</Button>
+            <Button onClick={() => handleFormSubmit("favorite")}>ADD TO FAVORITES</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
