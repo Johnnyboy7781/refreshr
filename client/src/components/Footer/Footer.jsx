@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     display: flex; 
@@ -44,9 +44,20 @@ const List = styled.ul`
 const ListItem = styled.li`
     width: 50%;
     margin-bottom: 10px;
+    color: black;
+    &:hover {
+        text-decoration: underline;
+    }
 `;
 
-
+const RouterLink = styled(Link)`
+    width: 50%;
+    margin-bottom: 10px;
+    color: black;
+    &:hover {
+        text-decoration: underline;
+    }
+`
 
 const Footer = () => {
     return (
@@ -60,8 +71,12 @@ const Footer = () => {
             <Center>
                 <Title>Useful Links</Title>
                 <List>
-                    <ListItem>Home</ListItem>
-                    <ListItem>Cart</ListItem>
+                    <RouterLink to="/">
+                        <ListItem>Home</ListItem>
+                    </RouterLink>
+                    <RouterLink to="/cart">
+                        <ListItem>Cart</ListItem>
+                    </RouterLink>
                     <ListItem>My Account</ListItem>
                     <ListItem>Order Tracking</ListItem>
                     <ListItem>Favorites</ListItem>
