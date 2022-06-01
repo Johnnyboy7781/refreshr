@@ -8,7 +8,7 @@ const Container = styled.div`
     bottom: 0;
     width: 100%;
     height: auto;
-    background: teal;
+    background: teal; 
 `;
 
 const Left = styled.div`
@@ -27,7 +27,6 @@ const Desc = styled.p`
 const Center = styled.div`
     flex: 1;
     padding: 20px;
-    
 `;
 
 const Title = styled.h3`
