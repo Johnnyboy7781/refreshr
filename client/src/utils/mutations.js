@@ -115,3 +115,14 @@ export const REMOVE_FROM_CART = gql`
   }
 `;
 
+export const TOGGLE_FAVORITE = gql`
+  mutation toggleFavorite($userId: ID!, $drinkId: ID!) {
+    toggleFavorite(userId: $userId, drinkId: $drinkId) {
+      _id
+      username
+      favorites {
+        _id
+      }
+    }
+  }
+`

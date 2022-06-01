@@ -5,7 +5,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useMutation } from "@apollo/client";
 
-import { ADD_FAVORITE, ADD_TO_CART } from "../../utils/mutations";
+import { ADD_FAVORITE, ADD_TO_CART, TOGGLE_FAVORITE } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
 const Info = styled.div`
@@ -72,6 +72,7 @@ const Icon = styled.div`
 const Product = ({ drink }) => {
   const [addToCart] = useMutation(ADD_TO_CART);
   const [addToFav] = useMutation(ADD_FAVORITE);
+  const [toggleFav] = useMutation(TOGGLE_FAVORITE);
 
   const handleFormSubmit = type => {
     if (!Auth.loggedIn()) {
@@ -86,7 +87,7 @@ const Product = ({ drink }) => {
           variables: { userId: data._id, drinkId: drink._id }
         })
       } else {
-        addToFav({
+        toggleFav({
           variables: { userId: data._id, drinkId: drink._id }
         })
       }
