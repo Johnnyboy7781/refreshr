@@ -6,37 +6,25 @@ import { useQuery } from "@apollo/client";
 import { QUERY_CART, QUERY_USER } from "../utils/queries";
 
 const Checkout = () => {
-    const { data } = useQuery(QUERY_USER);
-    let user = {};
-
-    if(data) {
-        user = data.user;
-    }
-    else {
-        user._id = null;
-    }
-
-    const { cart_data } = useQuery(QUERY_CART, {
-        variables: {
-            id: user._id
-        }
-    });
+    const { loading, data } = useQuery(QUERY_CART);
     let cart = {};
+    console.log(data);
 
-    if(cart_data) {
-        cart = cart_data.cart;
-    }
-    else {
+    if(loading) {
         return <p>Loading...</p>;
     }
+    else {
+        cart = data.cart;
+        return (
+            <section>
+                {cart.map((drink) => (
+                    <CartItem drink={drink} key={drink.name} />
+                ))}
+            </section>
+        );
+    }
 
-    return (
-        <section>
-            {cart.map((drink) => (
-                <CartItem drink={drink} key={drink.name} />
-            ))}
-        </section>
-    );
+    
 }
 
 export default Checkout;

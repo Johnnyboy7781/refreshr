@@ -5,7 +5,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useMutation } from "@apollo/client";
 
-import { ADD_TO_CART } from "../../utils/mutations";
+import { ADD_FAVORITE, ADD_TO_CART } from "../../utils/mutations";
 import Auth from '../../utils/auth';
 
 const Info = styled.div`
@@ -70,20 +70,26 @@ const Icon = styled.div`
 `;
 
 const Product = ({ drink }) => {
-  const [addToCart, { error }] = useMutation(ADD_TO_CART);
+  const [addToCart] = useMutation(ADD_TO_CART);
+  const [addToFav] = useMutation(ADD_FAVORITE);
 
-  const handleAddToCart = e => {
+  const handleFormSubmit = type => {
     if (!Auth.loggedIn()) {
-      alert("You must be logged in to add to cart!");
+      alert(`You must be logged in to add to ${type}!`);
     }
 
-    const { data } = Auth.getProfile() || "";
+    const { data } = Auth.getProfile();
 
     try {
-      e.preventDefault();
-      addToCart({
-        variables: { userId: data._id, drinkId: drink._id }
-      })
+      if (type === "cart") {
+        addToCart({
+          variables: { userId: data._id, drinkId: drink._id }
+        })
+      } else {
+        addToFav({
+          variables: { userId: data._id, drinkId: drink._id }
+        })
+      }
     } catch (err) {
       console.log(err);
     }
@@ -95,7 +101,7 @@ const Product = ({ drink }) => {
       <Image src={require(`../../assets/${drink.image}.png`)} alt="A drink" />
       <Info>
         <Icon>
-          <AddShoppingCartIcon onClick={handleAddToCart} />
+          <AddShoppingCartIcon onClick={() => handleFormSubmit("cart")} />
         </Icon>
         <Icon>
           <Link to={`/drink/${drink._id}`}>
@@ -103,7 +109,7 @@ const Product = ({ drink }) => {
           </Link>
         </Icon>
         <Icon>
-          <FavoriteBorderIcon />
+          <FavoriteBorderIcon onClick={() => handleFormSubmit("favorite")} />
         </Icon>
       </Info>
     </Container>
