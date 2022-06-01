@@ -3,6 +3,10 @@ import styled from "styled-components";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import InfoIcon from '@mui/icons-material/Info';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useMutation } from "@apollo/client";
+
+import { ADD_TO_CART } from "../../utils/mutations";
+import Auth from '../../utils/auth';
 
 const Info = styled.div`
   opacity: 0;
@@ -66,13 +70,32 @@ const Icon = styled.div`
 `;
 
 const Product = ({ drink }) => {
+  const [addToCart, { error }] = useMutation(ADD_TO_CART);
+
+  const handleAddToCart = e => {
+    const { data } = Auth.getProfile();
+    
+    if (!Auth.loggedIn()) {
+      return;
+    }
+
+    try {
+      e.preventDefault();
+      addToCart({
+        variables: { userId: data._id, drinkId: drink._id }
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
   return (
     <Container>
       <Circle />
       <Image src={require(`../../assets/${drink.image}.png`)} alt="A drink" />
       <Info>
         <Icon>
-          <AddShoppingCartIcon />
+          <AddShoppingCartIcon onClick={handleAddToCart} />
         </Icon>
         <Icon>
           <Link to={`${drink._id}`}>
