@@ -98,7 +98,7 @@ const Product = ({ drink }) => {
           <AddShoppingCartIcon onClick={handleAddToCart} />
         </Icon>
         <Icon>
-          <Link to={`${drink._id}`}>
+          <Link to={`/drink/${drink._id}`}>
           <InfoIcon />
           </Link>
         </Icon>
