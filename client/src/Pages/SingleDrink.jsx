@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -139,6 +140,7 @@ const SingleDrink = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
+      <Footer />
     </Container>
   );
 };
