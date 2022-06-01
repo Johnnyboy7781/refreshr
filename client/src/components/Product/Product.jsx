@@ -73,11 +73,11 @@ const Product = ({ drink }) => {
   const [addToCart, { error }] = useMutation(ADD_TO_CART);
 
   const handleAddToCart = e => {
-    const { data } = Auth.getProfile();
-    
     if (!Auth.loggedIn()) {
-      return;
+      alert("You must be logged in to add to cart!");
     }
+
+    const { data } = Auth.getProfile() || "";
 
     try {
       e.preventDefault();
