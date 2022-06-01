@@ -3,10 +3,12 @@ import styled from "styled-components";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import InfoIcon from '@mui/icons-material/Info';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useMutation } from "@apollo/client";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useMutation, useQuery } from "@apollo/client";
 
 import { ADD_TO_CART, TOGGLE_FAVORITE } from "../../utils/mutations";
 import Auth from '../../utils/auth';
+import { QUERY_USER } from "../../utils/queries";
 
 const Info = styled.div`
   opacity: 0;
@@ -72,6 +74,15 @@ const Icon = styled.div`
 const Product = ({ drink }) => {
   const [addToCart] = useMutation(ADD_TO_CART);
   const [toggleFav] = useMutation(TOGGLE_FAVORITE);
+  const { data: userData } = useQuery(QUERY_USER);
+
+  let isFav;
+
+  if (userData) {
+    isFav = userData.user.favorites.some(fav => {
+      return fav._id === drink._id
+    })
+  }
 
   const handleFormSubmit = type => {
     if (!Auth.loggedIn()) {
@@ -109,7 +120,10 @@ const Product = ({ drink }) => {
           </Link>
         </Icon>
         <Icon>
-          <FavoriteBorderIcon onClick={() => handleFormSubmit("favorite")} />
+          {isFav
+          ? <FavoriteIcon onClick={() => handleFormSubmit("favorite")} />
+          : <FavoriteBorderIcon onClick={() => handleFormSubmit("favorite")} />
+          }
         </Icon>
       </Info>
     </Container>
