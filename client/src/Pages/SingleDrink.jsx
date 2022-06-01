@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar/Navbar";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { QUERY_DRINK } from "../utils/queries";
+import { QUERY_DRINK, QUERY_USER } from "../utils/queries";
 import { ADD_TO_CART, ADD_TO_CART_BULK, TOGGLE_FAVORITE } from "../utils/mutations";
 import Auth from "../utils/auth";
 
@@ -99,6 +99,7 @@ const SingleDrink = () => {
   const [addToCart] = useMutation(ADD_TO_CART);
   const [toggleFav] = useMutation(TOGGLE_FAVORITE);
   const [addToCartBulk] = useMutation(ADD_TO_CART_BULK);
+  const { data: userData } = useQuery(QUERY_USER);
 
   const { loading, data } = useQuery(QUERY_DRINK, {
     variables: {
@@ -107,6 +108,14 @@ const SingleDrink = () => {
   });
 
   const drink = data?.drink || {};
+
+  let isFav = false;
+
+  if (userData) {
+    isFav = userData.user.favorites.some(fav => {
+      return fav._id === drink._id
+    })
+  }
 
   const [quantity, setQuantity] = useState(1);
 
@@ -167,7 +176,7 @@ const SingleDrink = () => {
               <AddIcon onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button onClick={() => handleFormSubmit("cart")}>ADD TO CART</Button>
-            <Button onClick={() => handleFormSubmit("favorite")}>ADD TO FAVORITES</Button>
+            <Button onClick={() => handleFormSubmit("favorite")}>{isFav ? "REMOVE FROM" : "ADD TO"} FAVORITES</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

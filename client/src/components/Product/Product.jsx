@@ -76,7 +76,7 @@ const Product = ({ drink }) => {
   const [toggleFav] = useMutation(TOGGLE_FAVORITE);
   const { data: userData } = useQuery(QUERY_USER);
 
-  let isFav;
+  let isFav = false;
 
   if (userData) {
     isFav = userData.user.favorites.some(fav => {
