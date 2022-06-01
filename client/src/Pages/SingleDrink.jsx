@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
 import { QUERY_DRINK } from "../utils/queries";
-import { ADD_FAVORITE, ADD_TO_CART, ADD_TO_CART_BULK } from "../utils/mutations";
+import { ADD_TO_CART, ADD_TO_CART_BULK, TOGGLE_FAVORITE } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const Container = styled.div`
@@ -97,7 +97,7 @@ const Button = styled.button`
 const SingleDrink = () => {
   const { drinkId } = useParams();
   const [addToCart] = useMutation(ADD_TO_CART);
-  const [addToFav] = useMutation(ADD_FAVORITE);
+  const [toggleFav] = useMutation(TOGGLE_FAVORITE);
   const [addToCartBulk] = useMutation(ADD_TO_CART_BULK);
 
   const { loading, data } = useQuery(QUERY_DRINK, {
@@ -137,7 +137,7 @@ const SingleDrink = () => {
           })
         }
       } else {
-        addToFav({
+        toggleFav({
           variables: { userId: data._id, drinkId: drink._id }
         })
       }

@@ -50,32 +50,6 @@ export const REMOVE_DRINK = gql`
   }
 `;
 
-export const ADD_FAVORITE = gql`
-  mutation addFavorite($userId: ID!, $drinkId: ID!) {
-    addFavorite(userId: $userId, drinkId: $drinkId) {
-      _id
-      username
-      favorites {
-        _id
-        name
-      }
-    }
-  }
-`;
-
-export const REMOVE_FAVORITE = gql`
-  mutation removeFavorite($userId: ID!, $drinkId: ID!) {
-    removeFavorite(userId: $userId, drinkId: $drinkId) {
-      _id
-      username
-      favorites {
-        _id
-        name
-      }
-    }
-  }
-`;
-
 export const ADD_TO_CART = gql`
   mutation addToCart($userId: ID!, $drinkId: ID!) {
     addToCart(userId: $userId, drinkId: $drinkId) {
