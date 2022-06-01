@@ -65,22 +65,6 @@ const resolvers = {
       const drink = await Drink.findOneAndDelete({ _id: drinkId });
       return drink;
     },
-    addFavorite: async (parent, { userId, drinkId }) => {
-      const user = await User.findOneAndUpdate(
-        { _id: userId },
-        { $addToSet: { favorites: drinkId }},
-        { new: true }
-      );
-      return user;
-    },
-    removeFavorite: async (parent, { userId, drinkId }) => {
-      const user = await User.findOneAndUpdate(
-        { _id: userId },
-        { $pull: { favorites: drinkId}},
-        { new: true }
-      );
-      return user;
-    },
     addToCart: async (parent, { userId, drinkId }) => {
       const user = await User.findOneAndUpdate(
         { _id: userId },
