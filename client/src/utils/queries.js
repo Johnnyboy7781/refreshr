@@ -57,14 +57,13 @@ export const QUERY_DRINK = gql`
 `;
 
 export const QUERY_CART = gql`
-    query cart($id: ID!) {
-        cart(id: $id) {
-            cart {
-                _id
-                name
-                description
-                price
-            }
+    query cart {
+        cart {
+            _id
+            name
+            description
+            price
+            image
         }
     }
 `

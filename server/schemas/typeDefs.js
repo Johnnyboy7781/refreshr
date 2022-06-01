@@ -28,7 +28,7 @@ const typeDefs = gql`
     user: User
     drinks: [Drink]
     drink(id: ID!): Drink
-    cart(id: ID!): User
+    cart: [Drink]
   }
 
   type Mutation {

@@ -10,7 +10,7 @@ module.exports = {
   },
   authMiddleware: function({ req }) {
     // retrieve token
-    let token = req.body || req.query.token || req.headers.authorization;
+    let token = req.headers.authorization || "";
 
     // format if needed
     if (req.headers.authorization) {
@@ -27,10 +27,11 @@ module.exports = {
 
     // verify token
     try {
+      console.log(token);
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
-    } catch {
-      console.log('Invalid token');
+    } catch (e) {
+      console.log(e);
     }
 
     return req;

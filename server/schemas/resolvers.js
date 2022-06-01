@@ -22,8 +22,15 @@ const resolvers = {
     drink: async (parent, { id }) => {
       return Drink.findOne({ _id: id });
     },
-    cart: async (parent, { id }) => {
-      return await User.findOne({ id }).populate('cart');
+    cart: async (parent, args, context) => {
+      console.log(context.user);
+      if(context.user) {
+        const user = await User.findById(context.user._id).populate("cart");
+        user.cart.sort((a, b) => a.name.localeCompare(b.name));
+        return user.cart;
+      }
+      
+      throw new AuthenticationError("Not logged in!");
     }
   },
 
