@@ -4,6 +4,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+html, body {
+  overflow-x: hidden;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -38,7 +43,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 3rem;
+  gap: 1rem;
 }
 .navToggler {
   display: none;
@@ -56,16 +61,23 @@ a {
     display: block;
     cursor: pointer;
   }
+  .navItem {
+    padding: 20px;
+  }
   .navMenu {
-    position: fixed;
-    top: 7vh;
-    right: 0;
-    height: 93vh;
-    width: 50vw;
-    background: rgb(0, 33, 65);
+    display: flex;
     flex-direction: column;
-    transform: translateX(100%);
-    transition: 0.5s ease-in;
+    align-items: center;
+    position: absolute;
+    top: 10vh;
+    right: 20px;
+    /* height: 93vh; */
+    width: 20rem;
+    background: rgb(0, 33, 65);
+    transform: translateX(120%);
+    transition: 350ms ease-in-out;
+    z-index: 1000;
+    padding: 0;
   }
 }
 /* Active Class */
