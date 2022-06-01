@@ -84,9 +84,24 @@ const resolvers = {
     addToCart: async (parent, { userId, drinkId }) => {
       const user = await User.findOneAndUpdate(
         { _id: userId },
-        { $addToSet: { cart: drinkId }},
+        { $push: { cart: drinkId }},
         { new: true }
       );
+      return user;
+    },
+    addToCartBulk: async (parent, { userId, drinkId, amount }) => {
+      let drinks = [];
+
+      for (let i = 0; i < amount; i++) {
+        drinks.push(drinkId);  
+      }
+      
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $push: { cart: { $each: drinks } } },
+        { new: true }
+      );
+
       return user;
     },
     removeFromCart: async (parent, { userId, drinkId }) => {

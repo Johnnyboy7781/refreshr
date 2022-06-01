@@ -44,6 +44,7 @@ const typeDefs = gql`
     addFavorite(userId: ID!, drinkId: ID!): User
     removeFavorite(userId: ID!, drinkId: ID!): User
     addToCart(userId: ID!, drinkId: ID!): User
+    addToCartBulk(userId: ID!, drinkId: ID!, amount: Int!): User
     removeFromCart(userId: ID!, drinkId: ID!): User
   }
 `;

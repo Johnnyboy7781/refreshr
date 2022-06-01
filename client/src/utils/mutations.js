@@ -89,6 +89,19 @@ export const ADD_TO_CART = gql`
   }
 `;
 
+export const ADD_TO_CART_BULK = gql`
+  mutation addToCartBulk($userId: ID!, $drinkId: ID!, amount: Int!) {
+    addToCartBulk(userId: $userId, drinkId: $drinkId, amount: $amount) {
+      _id
+      username
+      cart {
+        _id
+        name
+      }
+    }
+  }
+`
+
 export const REMOVE_FROM_CART = gql`
   mutation removeFromCart($userId: ID!, $drinkId: ID!) {
     removeFromCart(userId: $userId, drinkId: $drinkId) {
@@ -100,4 +113,5 @@ export const REMOVE_FROM_CART = gql`
       }
     }
   }
-`
+`;
+
