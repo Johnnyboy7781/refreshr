@@ -111,6 +111,28 @@ const resolvers = {
         { new: true }
       );
       return user;
+    },
+    toggleFavorite: async (parent, { userId, drinkId }) => {
+      let user = await User.findOne({ _id: userId });
+      const isInArr = user.favorites.some(function (fav) {
+        return fav.equals(drinkId);
+      });
+
+      if (isInArr) {
+        user = await User.findByIdAndUpdate(
+          { _id: userId },
+          { $pull: { favorites: drinkId } },
+          { new: true }
+        )
+      } else if (!isInArr) {
+        user = await User.findByIdAndUpdate(
+          { _id: userId },
+          { $push: { favorites: drinkId } },
+          { new: true }
+        )
+      }
+
+      return user
     }
   }
 };
