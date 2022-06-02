@@ -55,7 +55,8 @@ function App() {
               />
               <Route 
                 path="/cart"
-                element={<Checkout />}
+                // Page inaccesible if not logged in
+                element={Auth.loggedIn() ? <Checkout /> : <Home />}
               />
               <Route
                 path="/login"
@@ -63,6 +64,7 @@ function App() {
               />
               <Route
                 path='/favorites'
+                // Page inaccesible if not logged in
                 element={Auth.loggedIn() ? <Favorites /> : <Home />}
               />
             </Routes>
