@@ -3,10 +3,12 @@ import styled from "styled-components";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import InfoIcon from '@mui/icons-material/Info';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useMutation } from "@apollo/client";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useMutation, useQuery } from "@apollo/client";
 
-import { ADD_FAVORITE, ADD_TO_CART } from "../../utils/mutations";
+import { ADD_TO_CART, TOGGLE_FAVORITE } from "../../utils/mutations";
 import Auth from '../../utils/auth';
+import { QUERY_USER } from "../../utils/queries";
 
 const Info = styled.div`
   opacity: 0;
@@ -69,9 +71,26 @@ const Icon = styled.div`
   }
 `;
 
+const ColoredFavoriteIcon = styled(FavoriteIcon)`
+  filter: invert(37%) sepia(95%) saturate(1522%) hue-rotate(336deg) brightness(102%) contrast(87%);
+`
+
+const ColoredInfoIcon = styled(InfoIcon)`
+  color: black;
+`
+
 const Product = ({ drink }) => {
   const [addToCart] = useMutation(ADD_TO_CART);
-  const [addToFav] = useMutation(ADD_FAVORITE);
+  const [toggleFav] = useMutation(TOGGLE_FAVORITE);
+  const { data: userData } = useQuery(QUERY_USER);
+
+  let isFav = false;
+
+  if (userData) {
+    isFav = userData.user.favorites.some(fav => {
+      return fav._id === drink._id
+    })
+  }
 
   const handleFormSubmit = type => {
     if (!Auth.loggedIn()) {
@@ -86,7 +105,7 @@ const Product = ({ drink }) => {
           variables: { userId: data._id, drinkId: drink._id }
         })
       } else {
-        addToFav({
+        toggleFav({
           variables: { userId: data._id, drinkId: drink._id }
         })
       }
@@ -105,11 +124,14 @@ const Product = ({ drink }) => {
         </Icon>
         <Icon>
           <Link to={`/drink/${drink._id}`}>
-          <InfoIcon />
+          <ColoredInfoIcon />
           </Link>
         </Icon>
         <Icon>
-          <FavoriteBorderIcon onClick={() => handleFormSubmit("favorite")} />
+          {isFav
+            ? <ColoredFavoriteIcon onClick={() => handleFormSubmit("favorite")} />
+            : <FavoriteBorderIcon onClick={() => handleFormSubmit("favorite")} />
+          }
         </Icon>
       </Info>
     </Container>

@@ -8,12 +8,13 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-
 import Home from "./Pages/Home";
 import Register from './Pages/Register';
 import Checkout from "./Pages/Checkout";
 import Login from "./Pages/Login";
 import SingleDrink from './Pages/SingleDrink';
+import Favorites from './Pages/Favorites';
+import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -53,11 +54,17 @@ function App() {
               />
               <Route 
                 path="/cart"
-                element={<Checkout />}
+                // Page inaccesible if not logged in
+                element={Auth.loggedIn() ? <Checkout /> : <Home />}
               />
               <Route
                 path="/login"
                 element={<Login />}
+              />
+              <Route
+                path='/favorites'
+                // Page inaccesible if not logged in
+                element={Auth.loggedIn() ? <Favorites /> : <Home />}
               />
             </Routes>
       </Router>

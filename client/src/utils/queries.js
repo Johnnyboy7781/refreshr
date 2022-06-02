@@ -21,12 +21,14 @@ export const QUERY_USER = gql`
                 name
                 description
                 price
+                image
             }
             favorites {
                 _id
                 name
                 description
                 price
+                image
             }
         }
     }

@@ -65,28 +65,27 @@ const resolvers = {
       const drink = await Drink.findOneAndDelete({ _id: drinkId });
       return drink;
     },
-    addFavorite: async (parent, { userId, drinkId }) => {
-      const user = await User.findOneAndUpdate(
-        { _id: userId },
-        { $addToSet: { favorites: drinkId }},
-        { new: true }
-      );
-      return user;
-    },
-    removeFavorite: async (parent, { userId, drinkId }) => {
-      const user = await User.findOneAndUpdate(
-        { _id: userId },
-        { $pull: { favorites: drinkId}},
-        { new: true }
-      );
-      return user;
-    },
     addToCart: async (parent, { userId, drinkId }) => {
       const user = await User.findOneAndUpdate(
         { _id: userId },
-        { $addToSet: { cart: drinkId }},
+        { $push: { cart: drinkId }},
         { new: true }
       );
+      return user;
+    },
+    addToCartBulk: async (parent, { userId, drinkId, amount }) => {
+      let drinks = [];
+
+      for (let i = 0; i < amount; i++) {
+        drinks.push(drinkId);  
+      }
+      
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        { $push: { cart: { $each: drinks } } },
+        { new: true }
+      );
+
       return user;
     },
     removeFromCart: async (parent, { userId, drinkId }) => {
@@ -96,6 +95,28 @@ const resolvers = {
         { new: true }
       );
       return user;
+    },
+    toggleFavorite: async (parent, { userId, drinkId }) => {
+      let user = await User.findOne({ _id: userId });
+      const isInArr = user.favorites.some(function (fav) {
+        return fav.equals(drinkId);
+      });
+
+      if (isInArr) {
+        user = await User.findByIdAndUpdate(
+          { _id: userId },
+          { $pull: { favorites: drinkId } },
+          { new: true }
+        )
+      } else if (!isInArr) {
+        user = await User.findByIdAndUpdate(
+          { _id: userId },
+          { $push: { favorites: drinkId } },
+          { new: true }
+        )
+      }
+
+      return user
     }
   }
 };
