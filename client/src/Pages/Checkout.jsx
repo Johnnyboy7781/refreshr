@@ -9,6 +9,12 @@ import { useElements, useStripe } from "@stripe/react-stripe-js";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 
+const Container = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
 const CardElementContainer = styled.div`
   height: 40px;
   display: flex;
@@ -23,6 +29,7 @@ const CardElementContainer = styled.div`
 
 const FormContainer = styled.form`
   margin: 20px 10px;
+  max-width: 1250px;
 `;
 
 const FormFieldContainer = styled.div`
@@ -190,8 +197,9 @@ const Checkout = () => {
   } else {
     cart = data.cart;
     return (
-      <section>
-        <Navbar />
+      <>
+      <Navbar />
+      <Container>
         {cart.map((drink, index) => (
           <CartItem drink={drink} key={index} />
         ))}
@@ -239,7 +247,8 @@ const Checkout = () => {
           </SubmitButton>
         </FormContainer>
         <Footer />
-      </section>
+      </Container>
+      </>
     );
   }
 };
