@@ -5,10 +5,14 @@ import Footer from '../components/Footer/Footer';
 import Auth from '../utils/auth';
 
 const Favorites = () => {
+    if (!Auth.loggedIn()) {
+        
+    }
+    
     return (
         <div>
             <Navbar />
-            Favorites
+                Favorites
             <Footer />
         </div>
     )

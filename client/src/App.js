@@ -15,6 +15,7 @@ import Checkout from "./Pages/Checkout";
 import Login from "./Pages/Login";
 import SingleDrink from './Pages/SingleDrink';
 import Favorites from './Pages/Favorites';
+import Auth from './utils/auth';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -62,7 +63,7 @@ function App() {
               />
               <Route
                 path='/favorites'
-                element={<Favorites />}
+                element={Auth.loggedIn() ? <Favorites /> : <Home />}
               />
             </Routes>
       </Router>
