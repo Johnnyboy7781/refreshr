@@ -160,10 +160,7 @@ const Checkout = () => {
       console.log("payment method success");
 
       const { error } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: paymentMethodReq.paymentMethod.id,
-        currency: 'usd',
-        payment_method_types: ['card'],
-        amount: getTotal(cart)
+        payment_method: paymentMethodReq.paymentMethod.id
       });
 
       console.log("confirm payment success");

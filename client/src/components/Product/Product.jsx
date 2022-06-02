@@ -104,6 +104,8 @@ const Product = ({ drink }) => {
         addToCart({
           variables: { userId: data._id, drinkId: drink._id }
         })
+
+        window.location.reload();
       } else {
         toggleFav({
           variables: { userId: data._id, drinkId: drink._id }
