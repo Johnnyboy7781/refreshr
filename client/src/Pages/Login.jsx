@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
+import Footer from "../components/Footer/Footer";
 
 const Container = styled.div`
   width: 100vw;
@@ -19,7 +20,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
+  width: 80%;
+  max-width: 1000px;
   padding: 20px;
   background-color: white;
   opacity: 90%;
@@ -110,6 +112,7 @@ const Login = () => {
         </Form>
       </Wrapper>
     </Container>
+    <Footer />
     </>
   );
 };

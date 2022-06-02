@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar/Navbar";
+import Footer from '../components/Footer/Footer';
 import React from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
@@ -20,7 +21,8 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 40%;
+  width: 80%;
+  max-width: 1000px;
   padding: 20px;
   background-color: white;
   opacity: 90%;
@@ -111,6 +113,7 @@ const Register = () => {
         </Form>
       </Wrapper>
     </Container>
+    <Footer />
     </>
   );
 };
