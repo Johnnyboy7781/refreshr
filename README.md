@@ -1,4 +1,4 @@
-<h1 align='center'>refreshr</h1>
+<h1 align='center'>Refreshr</h1>
     
   ![badge](https://img.shields.io/badge/license-Academic-brightgreen)<br />
     
