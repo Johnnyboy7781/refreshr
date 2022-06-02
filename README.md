@@ -37,9 +37,9 @@
   ## Questions
   You can submit an issue, and we will be more than happy to work on it.<br />
   <br />
-  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
-  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
-  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
+  :octocat: Find me on GitHub: [JaredTempleton](https://github.com/JaredTempleton)<br />
+  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv)<br>
+  :octocat: Find me on GitHub: [Johnnyboy7781](https://github.com/Johnnyboy7781)<br />
   :octocat: Find me on GitHub: [zk229](https://github.com/zk299)<br />
   <br />
 
