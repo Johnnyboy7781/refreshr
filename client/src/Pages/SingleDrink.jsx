@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
@@ -35,6 +36,12 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: stretch;
   flex: 1;
   padding: 0px 50px;
   width: 25%;
@@ -45,7 +52,7 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  font-weight: bold;
 `;
 
 const Desc = styled.p`
@@ -180,6 +187,7 @@ const SingleDrink = () => {
           </AddContainer>
         </InfoContainer>
       </Wrapper>
+      <Footer />
     </Container>
   );
 };
