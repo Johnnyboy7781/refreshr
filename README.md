@@ -38,7 +38,9 @@
   You can submit an issue, and we will be more than happy to work on it.<br />
   <br />
   :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
+  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
+  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
+  :octocat: Find me on GitHub: [zk229](https://github.com/zk299)<br />
   <br />
-  Email me with any questions: jo<br /><br />
 
   _This README was made by [README-generator](https://github.com/jcv12/ReadMe-Generator)_
