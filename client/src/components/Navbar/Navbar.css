@@ -1,0 +1,104 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: rgb(204, 204, 204);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 10vh;
+  background: teal;
+  border-style: solid none;
+}
+.navBrand {
+  text-transform: uppercase;
+}
+
+.navLogo:hover {
+    transform: scaleX(-1)
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1rem;
+}
+.navToggler {
+  display: none;
+}
+.navToggler div {
+  width: 2.5rem;
+  height: 0.2rem;
+  margin: 0.4rem;
+  background: rgb(204, 204, 204);
+  transition: 0.3s ease-in;
+}
+
+@media screen and (max-width: 768px) {
+  .navToggler {
+    display: block;
+    cursor: pointer;
+  }
+  .navItem {
+    padding: 20px;
+  }
+  .navMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 10vh;
+    right: 20px;
+    /* height: 93vh; */
+    width: 20rem;
+    background: rgb(0, 33, 65);
+    /* transform: translateX(120%); */
+    opacity: 0;
+    transition: 250ms ease-in-out;
+    z-index: 1000;
+    padding: 0;
+  }
+}
+/* Active Class */
+.navActive {
+  opacity: 1;
+}
+
+/* Toggle Icon Animation */
+
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-4px, 5px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-4px, -5px);
+}
+.strokeText {
+    color: white;
+    text-transform: uppercase;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;   
+}
