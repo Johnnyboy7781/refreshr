@@ -26,10 +26,10 @@
   This application is covered by the Academic license.
 
   ## Contributing
-  Jared Templeton (Front-end developer) 
-  John Vayianos (Front-end developer) 
-  Jonathan McDonnell (Back-end developer) 
-  Zach Kirsche (Back-end developer)
+  Jared Templeton (Front-end developer) <br />
+  John Vayianos (Front-end developer) <br />
+  Jonathan McDonnell (Back-end developer) <br />
+  Zach Kirsche (Back-end developer) <br />
 
   ## Tests
   No Tests are featured
