@@ -1,6 +1,8 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
+const Stripe = require('stripe');
+const stripe = new Stripe(process.env.SECRET_KEY);
 
 const { typeDefs, resolvers } = require('./schemas');
 const { authMiddleware } = require("./utils/auth");
