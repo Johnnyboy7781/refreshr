@@ -28,6 +28,11 @@ function Navbar () {
               <Link to="/cart"><h4 className="navLink">Cart</h4></Link>
           </li>
           <li className="navItem">
+            <Link to="/favorites">
+              <h4 className="navLink">Favorites</h4>
+            </Link>
+          </li>
+          <li className="navItem">
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>

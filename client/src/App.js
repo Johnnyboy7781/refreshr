@@ -14,6 +14,7 @@ import Register from './Pages/Register';
 import Checkout from "./Pages/Checkout";
 import Login from "./Pages/Login";
 import SingleDrink from './Pages/SingleDrink';
+import Favorites from './Pages/Favorites';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -58,6 +59,10 @@ function App() {
               <Route
                 path="/login"
                 element={<Login />}
+              />
+              <Route
+                path='/favorites'
+                element={<Favorites />}
               />
             </Routes>
       </Router>
