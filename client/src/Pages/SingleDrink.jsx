@@ -21,6 +21,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  flex-direction: column;
 `;
 
 const ImgContainer = styled.div`
@@ -43,9 +44,7 @@ const InfoContainer = styled.div`
 	align-items: stretch;
 	align-content: stretch;
   flex: 1;
-  padding: 0px 50px;
-  width: 25%;
-  height: auto;
+  padding: 20px 50px;
   background-color: white;
   border: solid 5px teal;
   border-radius: 5px;
