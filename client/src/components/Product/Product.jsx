@@ -75,6 +75,10 @@ const ColoredFavoriteIcon = styled(FavoriteIcon)`
   filter: invert(37%) sepia(95%) saturate(1522%) hue-rotate(336deg) brightness(102%) contrast(87%);
 `
 
+const ColoredInfoIcon = styled(InfoIcon)`
+  color: black;
+`
+
 const Product = ({ drink }) => {
   const [addToCart] = useMutation(ADD_TO_CART);
   const [toggleFav] = useMutation(TOGGLE_FAVORITE);
@@ -120,7 +124,7 @@ const Product = ({ drink }) => {
         </Icon>
         <Icon>
           <Link to={`/drink/${drink._id}`}>
-          <InfoIcon />
+          <ColoredInfoIcon />
           </Link>
         </Icon>
         <Icon>
