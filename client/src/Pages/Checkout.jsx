@@ -6,6 +6,8 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { QUERY_CART, QUERY_USER } from "../utils/queries";
 import styled from "styled-components";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
 
 const CardElementContainer = styled.div`
   height: 40px;
@@ -20,7 +22,7 @@ const CardElementContainer = styled.div`
 `;
 
 const FormContainer = styled.form`
-    margin: 20px 10px;
+  margin: 20px 10px;
 `;
 
 const FormFieldContainer = styled.div`
@@ -78,44 +80,99 @@ const SubmitButton = styled.button`
   cursor: pointer;
 
   &:hover {
-      opacity: 0.9;
+    opacity: 0.9;
   }
 `;
 
 const Checkout = () => {
   const { loading, data } = useQuery(QUERY_CART);
   const [isProcessing, setProcessing] = useState(false);
+  const [checkoutError, setCheckoutError] = useState();
+  const [total, setTotal] = useState(0);
   const stripe = useStripe();
   const elements = useElements();
   let cart = {};
 
-  const handleFormSubmit = async event => {
+  const getTotal = (cart) => {
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+      total += cart[i].price;
+    }
+    total = Math.round(total * 100) / 100;
+    return total;
+  };
+
+  const onSuccessfulPurchase = () => {
+      console.log("Success!");
+  }
+
+  const handleCardDetailsChange = (ev) => {
+    ev.error ? setCheckoutError(ev.error.message) : setCheckoutError();
+  };
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     const billingDetails = {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        address: {
-            city: event.target.city.value,
-            line1: event.target.address.value,
-            state: event.target.state.value,
-        }
-    }
+      name: event.target.name.value,
+      email: event.target.email.value,
+      address: {
+        city: event.target.city.value,
+        line1: event.target.address.value,
+        state: event.target.state.value,
+        country: "US"
+      },
+    };
 
     setProcessing(true);
 
     const cardEl = elements.getElement("card");
 
     try {
-        const { data: clientSecret } = await fetch('/api/payment_intents', {
-            method: 'POST'
-        });
+      const { data: clientSecret } = await fetch("/api/payment_intents", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: getTotal(cart) * 100 }),
+      });
 
-        console.log(clientSecret);
+      const paymentMethodReq = await stripe.createPaymentMethod({
+        type: "card",
+        card: cardEl,
+        billing_details: billingDetails,
+      });
+
+      if (paymentMethodReq.error) {
+        setCheckoutError(paymentMethodReq.error.message);
+        setProcessing(false);
+        return;
+      }
+
+      console.log("payment method success");
+
+      const { error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: paymentMethodReq.paymentMethod.id,
+        currency: 'usd',
+        payment_method_types: ['card'],
+        amount: getTotal(cart)
+      });
+
+      console.log("confirm payment success");
+
+      if (error) {
+        setCheckoutError(error.message)
+        setProcessing(false);
+        return;
+      }
+
+      setProcessing(false);
+      onSuccessfulPurchase();
     } catch (err) {
-
+        setCheckoutError(err);
     }
-  }
+  };
 
   // Card input styles here
   const iframeStyles = {
@@ -134,6 +191,7 @@ const Checkout = () => {
     cart = data.cart;
     return (
       <section>
+        <Navbar />
         {cart.map((drink, index) => (
           <CartItem drink={drink} key={index} />
         ))}
@@ -177,9 +235,10 @@ const Checkout = () => {
             <CardElement options={cardElementOpts} />
           </CardElementContainer>
           <SubmitButton disabled={false}>
-              Pay $
+              {isProcessing ? "Processing..." : `Pay $${getTotal(cart)}`}
           </SubmitButton>
         </FormContainer>
+        <Footer />
       </section>
     );
   }

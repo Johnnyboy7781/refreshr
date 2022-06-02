@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
     display: flex; 
+    width: 100%;
     position: fixed;
     padding: 10px 10px 0px 10px;
     bottom: 0;
-    width: 100%;
     height: auto;
     background: teal; 
 `;
@@ -14,14 +14,18 @@ const Container = styled.div`
 const Left = styled.div`
     flex: 1;
     display: flex;
-    flex-direction: column;
-    padding: 20px;
+    padding: 10px;
+    align-items: center;
+
+    > * {
+        margin: 0 0 0 10px;
+    }
 `;
 
 const Logo = styled.h1``;
 
 const Desc = styled.p`
-    margin: 20px 0px;
+    // margin: 20px 0px;
 `;
 
 const Center = styled.div`
@@ -68,7 +72,7 @@ const Footer = () => {
                     Drink Up.
                 </Desc>
             </Left>
-            <Center>
+            {/* <Center>
                 <Title>Useful Links</Title>
                 <List>
                     <RouterLink to="/">
@@ -84,7 +88,7 @@ const Footer = () => {
                     </RouterLink>
                     <ListItem>Terms and Conditions</ListItem>
                 </List>
-            </Center>
+            </Center> */}
         </Container>
     );
 };

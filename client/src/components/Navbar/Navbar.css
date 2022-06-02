@@ -74,15 +74,16 @@ a {
     /* height: 93vh; */
     width: 20rem;
     background: rgb(0, 33, 65);
-    transform: translateX(120%);
-    transition: 350ms ease-in-out;
+    /* transform: translateX(120%); */
+    opacity: 0;
+    transition: 250ms ease-in-out;
     z-index: 1000;
     padding: 0;
   }
 }
 /* Active Class */
 .navActive {
-  transform: translateX(0%);
+  opacity: 1;
 }
 
 /* Toggle Icon Animation */
