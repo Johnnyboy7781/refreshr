@@ -102,7 +102,7 @@ const Checkout = () => {
         }
     }
 
-    isProcessing(true);
+    setProcessing(true);
 
     const cardEl = elements.getElement("card");
 
@@ -134,8 +134,8 @@ const Checkout = () => {
     cart = data.cart;
     return (
       <section>
-        {cart.map((drink) => (
-          <CartItem drink={drink} key={drink.name} />
+        {cart.map((drink, index) => (
+          <CartItem drink={drink} key={index} />
         ))}
         <FormContainer onSubmit={handleFormSubmit}>
           <FormFieldContainer>
