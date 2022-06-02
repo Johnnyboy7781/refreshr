@@ -34,6 +34,12 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
+  display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-evenly;
+	align-items: stretch;
+	align-content: stretch;
   flex: 1;
   padding: 0px 50px;
   width: 25%;
@@ -44,7 +50,7 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  font-weight: bold;
 `;
 
 const Desc = styled.p`
