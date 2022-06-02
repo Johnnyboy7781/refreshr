@@ -79,7 +79,9 @@ const Footer = () => {
                     </RouterLink>
                     <ListItem>My Account</ListItem>
                     <ListItem>Order Tracking</ListItem>
-                    <ListItem>Favorites</ListItem>
+                    <RouterLink to="/favorites">
+                        <ListItem>Favorites</ListItem>
+                    </RouterLink>
                     <ListItem>Terms and Conditions</ListItem>
                 </List>
             </Center>
