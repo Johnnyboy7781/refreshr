@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+<h1 align='center'>refreshr</h1>
+    
+  ![badge](https://img.shields.io/badge/license-Academic-brightgreen)<br />
+    
+  ## Description
+  This web application is a MERN Single-page application of an advance E-commerce website of our energy drink company Refreshr. As stated, this application was created using the react as our front end library with the assistance of GraphQL, Node, Express, MongoDB and Heroku to be deployed with real-world data.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  ## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
 
-## Available Scripts
+  ## Installation
+  No installation is needed as you can just click our deployed link
 
-In the project directory, you can run:
+  ## Usage
+  The project was used to display our advance knowledge in web development and provide a real world example of our problem solving abilites.
 
-### `npm start`
+  ## License
+  ![badge](https://img.shields.io/badge/license-Academic-brightgreen)
+  <br />
+  This application is covered by the Academic license.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  ## Contributing
+  Jared Templeton (Front-end developer) John Vayianos (Front-end developer) Jonathan McDonnell (Back-end developer) Zach Kirsche (Back-end developer)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  ## Tests
+  No Tests are featured
 
-### `npm test`
+  ## Questions
+  You can submit an issue, and we will be more than happy to work on it.<br />
+  <br />
+  :octocat: Find me on GitHub: [jcv12](https://github.com/jcv12)<br />
+  <br />
+  Email me with any questions: jo<br /><br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  _This README was made by [README-generator](https://github.com/jcv12/ReadMe-Generator)_
