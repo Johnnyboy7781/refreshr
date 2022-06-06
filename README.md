@@ -15,7 +15,7 @@
   - [Questions](#questions)
 
   ## Installation
-  No installation is needed as you can just click our deployed link
+  No installation is needed, visit the website at https://mighty-reef-66523.herokuapp.com/
 
   ## Usage
   The project was used to display our advance knowledge in web development and provide a real world example of our problem solving abilites.
